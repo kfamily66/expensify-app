@@ -37,6 +37,12 @@ const removeExpense = ({ id } = {}) => ({
   id
 });
 
+const editExpense = (id, update) => ({
+  type: "EDIT_EXPENSE",
+  id,
+  update
+});
+
 //
 // Creating reducers with their default states
 //
@@ -49,6 +55,17 @@ const expensesReducer = (state = defaultExpensesState, action) => {
       return [...state, action.expense];
     case "REMOVE_EXPENSE":
       return state.filter(expense => expense.id !== action.id);
+    case "EDIT_EXPENSE":
+      return state.map(expense => {
+        if (expense.id === action.id) {
+          return {
+            ...expense,
+            ...action.update
+          };
+        } else {
+          return expense;
+        }
+      });
     default:
       return state;
   }
@@ -93,4 +110,14 @@ const itemOne = store.dispatch(
   })
 );
 
+const itemTwo = store.dispatch(
+  addExpense({
+    description: "December Rent",
+    note: "This was the payment for the flat",
+    amount: 200
+  })
+);
+
 store.dispatch(removeExpense({ id: itemOne.expense.id }));
+
+store.dispatch(editExpense(itemTwo.expense.id, { amount: 1000 }));
