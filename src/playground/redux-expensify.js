@@ -22,13 +22,14 @@ import uuid from "uuid";
 //
 // Creating action generators for expensesReducer
 //
-const addExpense = ({ description = "", note = "", amount = 0 } = {}) => ({
+const addExpense = ({ description = "", note = "", amount = 0, createdAt } = {}) => ({
   type: "ADD_EXPENSE",
   expense: {
     id: uuid(),
     description,
     note,
-    amount
+    amount,
+    createdAt
   }
 });
 
@@ -148,39 +149,63 @@ const store = createStore(
   })
 );
 
-store.subscribe(() => console.log(store.getState()));
+const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
+  return expenses
+    .filter(expense => {
+      const startDateMatch = typeof startDate !== "number" || expense.createdAt >= startDate;
+      const endDateMatch = typeof endDate !== "number" || expense.createdAt <= endDate;
+      const textMatch = text === "" || expense.description.toLowerCase().includes(text.toLowerCase());
+
+      return textMatch && startDateMatch && endDateMatch;
+    })
+    .sort((a, b) => {
+      if (sortBy === "date") {
+        return a.createdAt < b.createdAt ? 1 : -1;
+      }
+      if (sortBy === "amount") {
+        return a.amount < b.amount ? 1 : -1;
+      }
+    });
+};
+
+store.subscribe(() => {
+  const state = store.getState();
+  console.log(getVisibleExpenses(state.expences, state.filters));
+});
 
 //
 // Add and remove expense to the store
 //
 
-// const itemOne = store.dispatch(
-//   addExpense({
-//     description: "January Rent",
-//     note: "This was the final payment for that address",
-//     amount: 100
-//   })
-// );
+const itemOne = store.dispatch(
+  addExpense({
+    description: "January Rent",
+    note: "This was the final rent payment for that address",
+    amount: 4000,
+    createdAt: -3000
+  })
+);
 
-// const itemTwo = store.dispatch(
-//   addExpense({
-//     description: "December Rent",
-//     note: "This was the payment for the flat",
-//     amount: 200
-//   })
-// );
+const itemTwo = store.dispatch(
+  addExpense({
+    description: "December Rent",
+    note: "Coffee",
+    amount: 2000,
+    createdAt: -1000
+  })
+);
 
 // store.dispatch(removeExpense({ id: itemOne.expense.id }));
 // store.dispatch(editExpense(itemTwo.expense.id, { amount: 1000 }));
 
-// store.dispatch(setTextFilter("rent"));
+// store.dispatch(setTextFilter("coffee"));
 // store.dispatch(setTextFilter());
 
 // store.dispatch(sortByAmount());
 // store.dispatch(sortByDate());
 
-store.dispatch(setStartDate(125));
-store.dispatch(setStartDate());
+// store.dispatch(setStartDate(-1001));
+// store.dispatch(setStartDate());
 
-store.dispatch(setEndDate(200));
-store.dispatch(setEndDate());
+// store.dispatch(setEndDate(0));
+// store.dispatch(setEndDate());
