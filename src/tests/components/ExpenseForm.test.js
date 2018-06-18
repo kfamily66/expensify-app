@@ -12,3 +12,38 @@ test("should render ExpenseForm with data", () => {
   const wrapper = shallow(<ExpenseForm expense={expenses[1]} />);
   expect(wrapper).toMatchSnapshot();
 });
+
+test("should render error for invalid form submission", () => {
+  const wrapper = shallow(<ExpenseForm />);
+  expect(wrapper).toMatchSnapshot();
+  wrapper.find("form").simulate("submit", {
+    // should pass fake object to simulate e with preventDafault
+    preventDefault: () => {}
+  });
+  expect(wrapper.state("error").length).toBeGreaterThan(0);
+  expect(wrapper).toMatchSnapshot();
+});
+
+test("should set descriptions on input change", () => {
+  const value = "New description";
+  const wrapper = shallow(<ExpenseForm />);
+  wrapper
+    .find("input")
+    .at(0)
+    .simulate("change", {
+      target: { value }
+    });
+  expect(wrapper.state("description")).toBe(value);
+});
+
+test("should set note on textarea change", () => {
+  const value = "New note";
+  const wrapper = shallow(<ExpenseForm />);
+  wrapper
+    .find("textarea")
+    .at(0)
+    .simulate("change", {
+      target: { value }
+    });
+  expect(wrapper.state("note")).toBe(value);
+});
