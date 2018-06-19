@@ -39,11 +39,28 @@ test("should set descriptions on input change", () => {
 test("should set note on textarea change", () => {
   const value = "New note";
   const wrapper = shallow(<ExpenseForm />);
-  wrapper
-    .find("textarea")
-    .at(0)
-    .simulate("change", {
-      target: { value }
-    });
+  wrapper.find("textarea").simulate("change", {
+    target: { value }
+  });
   expect(wrapper.state("note")).toBe(value);
+});
+
+test("should set amount if valid input", () => {
+  const value = "23.55";
+  const wrapper = shallow(<ExpenseForm />);
+  wrapper
+    .find("input")
+    .at(1)
+    .simulate("change", { target: { value } });
+  expect(wrapper.state("amount")).toBe(value);
+});
+
+test("should not set amount if invalid input", () => {
+  const value = "23.555";
+  const wrapper = shallow(<ExpenseForm />);
+  wrapper
+    .find("input")
+    .at(1)
+    .simulate("change", { target: { value } });
+  expect(wrapper.state("amount")).toBe("");
 });
