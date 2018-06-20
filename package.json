@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
+    "serve": "live-server ./public/",
     "test": "jest --config=jest.config.json"
   },
   "author": "Eugene Kozlov",
