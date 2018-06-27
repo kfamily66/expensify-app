@@ -7,7 +7,7 @@ test("should render ExpensesSummary without visible expenses", () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-test("should render ExpensesSummary without visible expenses", () => {
+test("should render ExpensesSummary with visible expenses", () => {
   const wrapper = shallow(<ExpensesSummary expenseCount={3} expensesTotal={550} />);
   expect(wrapper).toMatchSnapshot();
 });
