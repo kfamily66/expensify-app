@@ -60,3 +60,11 @@ test("should not edit expense with non-existing id", () => {
   });
   expect(expensesState).toEqual(expenses);
 });
+
+test("should set expenses", () => {
+  const expensesState = expensesReducer(expenses, {
+    type: "SET_EXPENSES",
+    expenses: [expenses[1]]
+  });
+  expect(expensesState).toEqual([expenses[1]]);
+});
