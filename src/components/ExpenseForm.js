@@ -53,39 +53,47 @@ export default class ExpenseForm extends React.Component {
   };
   render() {
     return (
-      <div>
-        <h2>This is ExpenseForm</h2>
-        {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            placeholder="Description"
-            autoFocus
-            value={this.state.description}
-            onChange={this.onDescriptionChange}
-          />
-          <input type="text" placeholder="Amount" value={this.state.amount} onChange={this.onAmountChange} />
-          <SingleDatePicker
-            date={this.state.createdAt}
-            onDateChange={this.onDateChange}
-            focused={this.state.focused}
-            onFocusChange={this.onFocusChange}
-            numberOfMonths={1}
-            isOutsideRange={() => false}
-            firstDayOfWeek={1}
-            transitionDuration={100}
-            displayFormat={"DD/MM/YYYY"}
-            hideKeyboardShortcutsPanel={true}
-          />
-          <textarea
-            type="textarea"
-            placeholder="Additional note (optoinal)"
-            value={this.state.note}
-            onChange={this.onNoteChange}
-          />
-          <button>Add Expense</button>
-        </form>
-      </div>
+      <form className="form" onSubmit={this.onSubmit}>
+        {this.state.error && <p className="form__error">{this.state.error}</p>}
+        <input
+          className="text-input"
+          type="text"
+          placeholder="Description"
+          autoFocus
+          value={this.state.description}
+          onChange={this.onDescriptionChange}
+        />
+        <input
+          className="text-input"
+          type="text"
+          placeholder="Amount"
+          value={this.state.amount}
+          onChange={this.onAmountChange}
+        />
+        <SingleDatePicker
+          date={this.state.createdAt}
+          onDateChange={this.onDateChange}
+          focused={this.state.focused}
+          onFocusChange={this.onFocusChange}
+          numberOfMonths={1}
+          isOutsideRange={() => false}
+          firstDayOfWeek={1}
+          transitionDuration={100}
+          displayFormat={"DD/MM/YYYY"}
+          hideKeyboardShortcutsPanel={true}
+          block={true}
+        />
+        <textarea
+          type="textarea"
+          className="textarea"
+          placeholder="Additional note (optoinal)"
+          value={this.state.note}
+          onChange={this.onNoteChange}
+        />
+        <div>
+          <button className="button">Save Expense</button>
+        </div>
+      </form>
     );
   }
 }

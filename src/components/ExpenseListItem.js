@@ -4,12 +4,11 @@ import moment from "moment";
 import numeral from "numeral";
 
 export default ({ description, amount, createdAt, id }) => (
-  <div>
-    <h3>
-      <Link to={`/edit/${id}`}>{description}</Link>
-    </h3>
-    <p>
-      {numeral(amount / 100).format("$0,0.00")} - {moment(createdAt).format("DD MMM YYYY")}
-    </p>
-  </div>
+  <Link className="list-item" to={`/edit/${id}`}>
+    <div>
+      <h3 className="list-item__title">{description}</h3>
+      <span className="list-item__subtitle">{moment(createdAt).format("DD MMM YYYY")}</span>
+    </div>
+    <h3 className="list-item__date">{numeral(amount / 100).format("$0,0.00")}</h3>
+  </Link>
 );
