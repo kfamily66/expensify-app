@@ -1,4 +1,6 @@
-# **Expensify** is a React-based single-page application.
+# **Expensify** is a React-based single-page application for managing your expenses.
+
+[Live demo on Heroku](https://guarded-sierra-95022.herokuapp.com)
 
 ## Core functionality:
 
@@ -12,8 +14,6 @@
 - display summary for all visible expenses
 - fully responsive
 
----
-
 ## Tech used:
 
 - React for UI
@@ -25,7 +25,7 @@
 - Moment.js for parse, validate, manipulate, and display dates and times
 - React-dates for date pickers
 - Node.js and Express.js on back-end
-- Redux-thunk as middleware to
+- Redux-thunk as middleware
 - Jest / Enzyme for unit-testing
 - SASS for styling
 - Heroku for deployment
