@@ -6,6 +6,7 @@
   @media (min-width: $desktop-breakpoint) {
     flex-direction: row;
     margin-bottom: $l-size;
+    justify-content: space-between;
   }
 }
 
@@ -15,4 +16,12 @@
   @media (min-width: $desktop-breakpoint) {
     margin: 0 $s-size 0 0;
   }
+}
+
+.input-group__item--last {
+  margin: 0;
+}
+
+.input-group__item--grow {
+  flex-grow: 1;
 }
