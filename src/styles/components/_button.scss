@@ -8,6 +8,17 @@
   line-height: 1;
   padding: $s-size;
   text-decoration: none;
+
+  @media (max-width: $desktop-breakpoint) {
+    font-size: 2rem;
+    padding: 1.8rem;
+  }
+}
+
+.button--fullwidth {
+  @media (max-width: $desktop-breakpoint) {
+    width: 100%;
+  }
 }
 
 .button--link {

@@ -1,6 +1,11 @@
 .page-header {
   margin-bottom: $l-size;
   padding: $l-size 0;
+
+  @media (max-width: $desktop-breakpoint) {
+    text-align: center;
+    margin-bottom: 0;
+  }
 }
 
 .page-header__actions {

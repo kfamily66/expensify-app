@@ -25,3 +25,11 @@
 .input-group__item--grow {
   flex-grow: 1;
 }
+
+// stretching DateRangePicker width to 100% on mobile
+.DateRangePicker_1 {
+  width: 100%;
+  .DateRangePickerInput_1 {
+    width: 100%;
+  }
+}
