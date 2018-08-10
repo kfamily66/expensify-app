@@ -2,6 +2,10 @@
 
 [Live demo on Heroku](https://guarded-sierra-95022.herokuapp.com)
 
+Test login data:
+login : expensify.app.test@gmail.com
+password : expensify
+
 ## Core functionality:
 
 - login with Google
