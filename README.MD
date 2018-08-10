@@ -2,8 +2,8 @@
 
 [Live demo on Heroku](https://guarded-sierra-95022.herokuapp.com)
 
-Test login data:
-login : expensify.app.test@gmail.com
+**Test login data:** <br>
+login : expensify.app.test@gmail.com <br>
 password : expensify
 
 ## Core functionality:
